@@ -18,6 +18,9 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int employeeid;
 
+    private String firstName;
+
+    private String lastName;
 
     @Column(nullable=false)
     private String username;
@@ -33,8 +36,10 @@ public class Employee {
     }
 
 
-    public Employee(int employeeid, String username, String password, String title) {
+    public Employee(int employeeid, String firstName, String lastName, String username, String password, String title) {
         this.employeeid = employeeid;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.username = username;
         this.password = password;
         this.title = title;
@@ -48,6 +53,26 @@ public class Employee {
 
     public void setEmployeeid(int employeeid) {
         this.employeeid = employeeid;
+    }
+
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+
+    public String getLastName() {
+        return lastName;
+    }
+
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
 
