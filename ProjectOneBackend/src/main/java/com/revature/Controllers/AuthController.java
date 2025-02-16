@@ -15,7 +15,9 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody Employee employee){
 
-        return ResponseEntity.ok("Employee registered, but not really");
+        
+
+        return ResponseEntity.ok(employee);
 
     }
 

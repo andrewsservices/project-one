@@ -18,9 +18,9 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int employeeid;
 
-    private String firstName;
+    private String firstname;
 
-    private String lastName;
+    private String lastname;
 
     @Column(nullable=false)
     private String username;
@@ -28,22 +28,22 @@ public class Employee {
     @Column(nullable=false)
     private String password;
 
-    @Column(nullable=false)
-    private String title;
+    private String title = "basic";
 
 
     public Employee() {
     }
 
 
-    public Employee(int employeeid, String firstName, String lastName, String username, String password, String title) {
+    public Employee(int employeeid, String firstname, String lastname, String username, String password, String title) {
         this.employeeid = employeeid;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.username = username;
         this.password = password;
         this.title = title;
     }
+
 
 
     public int getEmployeeid() {
@@ -56,24 +56,39 @@ public class Employee {
     }
 
 
-    public String getFirstName() {
-        return firstName;
+
+
+
+    public String getFirstname() {
+        return firstname;
     }
 
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+
+
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
 
-    public String getLastName() {
-        return lastName;
+
+
+
+    public String getLastname() {
+        return lastname;
     }
 
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+
+
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
+
+
+
 
 
     public String getUsername() {
@@ -81,9 +96,15 @@ public class Employee {
     }
 
 
+
+
+
     public void setUsername(String username) {
         this.username = username;
     }
+
+
+
 
 
     public String getPassword() {
@@ -91,9 +112,15 @@ public class Employee {
     }
 
 
+
+
+
     public void setPassword(String password) {
         this.password = password;
     }
+
+
+
 
 
     public String getTitle() {
@@ -101,9 +128,15 @@ public class Employee {
     }
 
 
+
+
+
     public void setTitle(String title) {
         this.title = title;
     }
+
+
+
 
 
     @Override
