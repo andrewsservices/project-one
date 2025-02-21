@@ -20,24 +20,21 @@ public class Reimbursement {
 
     private String description;
 
-    @Column(nullable=false)
     private double amount;
 
-    @Column(nullable=false)
-    private String status;
+    private String status="pending";
 
-    @Column(nullable=false)
-    private int userId;
+    private Employee employee;
 
     public Reimbursement() {
     }
 
-    public Reimbursement(int reimbursementId, String description, double amount, String status, int userId) {
+    public Reimbursement(int reimbursementId, String description, double amount, String status, Employee employee) {
         this.reimbursementId = reimbursementId;
         this.description = description;
         this.amount = amount;
         this.status = status;
-        this.userId = userId;
+        this.employee = employee;
     }
 
     public int getReimbursementId() {
@@ -72,19 +69,19 @@ public class Reimbursement {
         this.status = status;
     }
 
-    public int getUserId() {
-        return userId;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     @Override
     public String toString() {
         return "Reimbursement [reimbursementId=" + reimbursementId + ", description=" + description + ", amount="
-                + amount + ", status=" + status + ", userId=" + userId + "]";
+                + amount + ", status=" + status + ", employee=" + employee + "]";
     }
 
-
+    
 }

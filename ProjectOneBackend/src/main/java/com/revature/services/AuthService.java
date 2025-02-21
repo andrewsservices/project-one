@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.revature.DAOs.EmployeeDAO;
 import com.revature.models.Employee;
+import com.revature.models.DTOs.EmployeeDTO;
 
 @Service
 public class AuthService {
@@ -16,10 +17,19 @@ public class AuthService {
         this.employeeDAO = employeeDAO;
     }
 
-    public Employee registerEmployee(Employee employee){
+    public EmployeeDTO registerEmployee(Employee employee){
 
+        Employee returnedEmployee = employeeDAO.save(employee);
 
-        return employeeDAO.save(employee);
+        EmployeeDTO registeredEmployee = new EmployeeDTO(
+            returnedEmployee.getEmployeeid(),
+            returnedEmployee.getFirstname(),
+            returnedEmployee.getLastname(),
+            returnedEmployee.getUsername(),
+            returnedEmployee.getTitle()
+        );
+
+        return registeredEmployee;
 
     }
 }
