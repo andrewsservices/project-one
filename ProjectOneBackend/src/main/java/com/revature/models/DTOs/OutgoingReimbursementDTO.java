@@ -1,81 +1,82 @@
-package com.revature.models;
+package com.revature.models.DTOs;
 
-import org.springframework.stereotype.Component;
-
-import jakarta.persistence.*;
-
-@Component
-@Entity
-@Table(name="reimbursements")
-public class Reimbursement {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class OutgoingReimbursementDTO {
     private int reimbursementid;
-
     private String description;
-
     private double amount;
-
     private String status;
+    private int employeeid;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "employeeid")
-    private Employee employee;
 
-    public Reimbursement() {
+    public OutgoingReimbursementDTO() {
     }
 
-    public Reimbursement(int reimbursementid, String description, double amount, String status, Employee employee) {
+
+    public OutgoingReimbursementDTO(int reimbursementid, String description, double amount, String status,
+            int employeeid) {
         this.reimbursementid = reimbursementid;
         this.description = description;
         this.amount = amount;
         this.status = status;
-        this.employee = employee;
+        this.employeeid = employeeid;
     }
+
 
     public int getReimbursementid() {
         return reimbursementid;
     }
 
+
     public void setReimbursementid(int reimbursementid) {
         this.reimbursementid = reimbursementid;
     }
+
 
     public String getDescription() {
         return description;
     }
 
+
     public void setDescription(String description) {
         this.description = description;
     }
+
 
     public double getAmount() {
         return amount;
     }
 
+
     public void setAmount(double amount) {
         this.amount = amount;
     }
+
 
     public String getStatus() {
         return status;
     }
 
+
     public void setStatus(String status) {
         this.status = status;
     }
 
-    public Employee getEmployee() {
-        return employee;
-    }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public int getEmployeeid() {
+        return employeeid;
     }
 
 
+    public void setEmployeeid(int employeeid) {
+        this.employeeid = employeeid;
+    }
 
 
+    @Override
+    public String toString() {
+        return "OutgoingReimbursementDTO [reimbursementid=" + reimbursementid + ", description=" + description
+                + ", amount=" + amount + ", status=" + status + ", employeeid=" + employeeid + "]";
+    }
 
+    
 }

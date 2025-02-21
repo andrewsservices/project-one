@@ -1,6 +1,5 @@
 package com.revature.DAOs;
-import java.util.Optional;
-
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -8,8 +7,6 @@ import org.springframework.stereotype.Repository;
 import com.revature.models.Reimbursement;
 
 @Repository
-public interface ReimbursementDAO extends JpaRepository<Reimbursement,Integer>{
-
-    public Optional<Reimbursement> findById(Integer id);
-
+public interface ReimbursementDAO extends JpaRepository<Reimbursement, Integer> {
+   public List<Reimbursement> findByEmployee_Employeeid(int employeeid);
 }

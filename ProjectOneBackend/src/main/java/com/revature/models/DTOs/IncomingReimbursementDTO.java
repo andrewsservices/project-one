@@ -1,29 +1,29 @@
 package com.revature.models.DTOs;
 
 public class IncomingReimbursementDTO {
-    private int reimbursementId;
+    private int reimbursementid;
     private String description;
     private double amount;
     private String status;
-    private int employeeId;
+    private int employeeid;
 
     public IncomingReimbursementDTO() {
     }
 
-    public IncomingReimbursementDTO(int reimbursementId, String description, double amount, String status, int employeeId) {
-        this.reimbursementId = reimbursementId;
+    public IncomingReimbursementDTO(int reimbursementid, String description, double amount, String status, int employeeid) {
+        this.reimbursementid = reimbursementid;
         this.description = description;
         this.amount = amount;
         this.status = status;
-        this.employeeId = employeeId;
+        this.employeeid = employeeid;
     }
 
-    public int getReimbursementId() {
-        return reimbursementId;
+    public int getReimbursementid() {
+        return reimbursementid;
     }
 
-    public void setReimbursementId(int reimbursementId) {
-        this.reimbursementId = reimbursementId;
+    public void setReimbursementid(int reimbursementid) {
+        this.reimbursementid = reimbursementid;
     }
 
     public String getDescription() {
@@ -50,20 +50,20 @@ public class IncomingReimbursementDTO {
         this.status = status;
     }
 
-    public int getEmployeeId() {
-        return employeeId;
+    public int getEmployeeid() {
+        return employeeid;
     }
 
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployeeid(int employeeid) {
+        this.employeeid = employeeid;
     }
 
     @Override
     public String toString() {
-        return "IncomingReimbursementDTO [reimbursementId=" + reimbursementId + ", description=" + description
-                + ", amount=" + amount + ", status=" + status + ", employeeId=" + employeeId + "]";
+        return "IncomingReimbursementDTO [reimbursementid=" + reimbursementid + ", description=" + description
+                + ", amount=" + amount + ", status=" + status + ", employeeid=" + employeeid + "]";
     }
 
 
-    
+
 }

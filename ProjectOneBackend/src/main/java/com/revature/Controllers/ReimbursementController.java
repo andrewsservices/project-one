@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.models.Reimbursement;
+import com.revature.models.DTOs.IncomingReimbursementDTO;
+import com.revature.models.DTOs.OutgoingReimbursementDTO;
 import com.revature.services.ReimbursementService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 
@@ -29,19 +32,25 @@ public class ReimbursementController {
         this.reimbursementService = reimbursementService;
     }
 
-    @PostMapping("/post")
-    public ResponseEntity <Reimbursement> postReimbursement(@RequestBody Reimbursement reimbursement){
-        Reimbursement returnedReimbursement = reimbursementService.postReimbursement(reimbursement);
-        return ResponseEntity.ok(returnedReimbursement);
+    @PostMapping
+    public ResponseEntity<Reimbursement> postReimbursement(@RequestBody IncomingReimbursementDTO reimbursementDTO){
+
+        //send the DTO to the service and return the VideoGame object that comes back
+        return ResponseEntity.accepted().body(reimbursementService.postReimbursement(reimbursementDTO));
+
     }
 
     @GetMapping
-    public ResponseEntity <List<Reimbursement>> getAllReimbursements(){
+    public ResponseEntity <List<OutgoingReimbursementDTO>> getAllReimbursements(){
         return ResponseEntity.ok(reimbursementService.getAllReimbursements());
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity <Reimbursement> findReimbursementById(@RequestParam int id){
-        return ResponseEntity.ok(reimbursementService.findReimbursementById(id));
+    @GetMapping("/employee/{id}")
+    public ResponseEntity <List<OutgoingReimbursementDTO>> getReimbursementsByEmployee(@PathVariable int id){
+        List<OutgoingReimbursementDTO> reimbursementsByEmployee = reimbursementService.getReimbursementsByEmployee(id);
+
+        return ResponseEntity.ok(reimbursementsByEmployee);
     }
+
+
 }
