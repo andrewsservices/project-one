@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.aspects.AdminOnly;
 import com.revature.models.Reimbursement;
 import com.revature.models.DTOs.IncomingReimbursementDTO;
 import com.revature.models.DTOs.OutgoingReimbursementDTO;
@@ -41,11 +42,13 @@ public class ReimbursementController {
     }
 
     @GetMapping
+    @AdminOnly
     public ResponseEntity <List<OutgoingReimbursementDTO>> getAllReimbursements(){
         return ResponseEntity.ok(reimbursementService.getAllReimbursements());
     }
 
     @GetMapping("/employee/{id}")
+    @AdminOnly
     public ResponseEntity <List<OutgoingReimbursementDTO>> getReimbursementsByEmployee(@PathVariable int id){
         List<OutgoingReimbursementDTO> reimbursementsByEmployee = reimbursementService.getReimbursementsByEmployee(id);
 
