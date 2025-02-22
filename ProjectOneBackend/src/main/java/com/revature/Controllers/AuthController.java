@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.models.Employee;
-import com.revature.models.DTOs.EmployeeDTO;
+import com.revature.models.DTOs.OutgoingEmployeeDTO;
 import com.revature.services.AuthService;
 
 @RestController
@@ -23,9 +23,9 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<EmployeeDTO> registerEmployee(@RequestBody Employee employee){
+    public ResponseEntity<OutgoingEmployeeDTO> registerEmployee(@RequestBody Employee employee){
 
-        EmployeeDTO returnedEmployee = authService.registerEmployee(employee);
+        OutgoingEmployeeDTO returnedEmployee = authService.registerEmployee(employee);
 
         return ResponseEntity.ok(returnedEmployee);
     }

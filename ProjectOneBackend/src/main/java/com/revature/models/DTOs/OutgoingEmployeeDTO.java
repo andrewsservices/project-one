@@ -2,7 +2,7 @@ package com.revature.models.DTOs;
 
 import com.revature.models.Employee;
 
-public class EmployeeDTO {
+public class OutgoingEmployeeDTO {
    private int employeeid;
    private String firstname;
    private String lastname;
@@ -11,12 +11,12 @@ public class EmployeeDTO {
 
 
 
-    public EmployeeDTO() {
+    public OutgoingEmployeeDTO() {
     }
 
 
 
-    public EmployeeDTO(int employeeid, String firstname, String lastname, String username, String title) {
+    public OutgoingEmployeeDTO(int employeeid, String firstname, String lastname, String username, String title) {
         this.employeeid = employeeid;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -24,7 +24,7 @@ public class EmployeeDTO {
         this.title = title;
     }
 
-    public EmployeeDTO(Employee employee){
+    public OutgoingEmployeeDTO(Employee employee){
         this.employeeid = employee.getEmployeeid();
         this.firstname = employee.getFirstname();
         this.lastname = employee.getLastname();

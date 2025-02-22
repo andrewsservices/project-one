@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.revature.DAOs.EmployeeDAO;
 import com.revature.models.Employee;
-import com.revature.models.DTOs.EmployeeDTO;
+import com.revature.models.DTOs.OutgoingEmployeeDTO;
 
 @Service
 public class EmployeeService {
@@ -20,14 +20,14 @@ public class EmployeeService {
     }
 
 
-    public List<EmployeeDTO> getAllEmployees(){
+    public List<OutgoingEmployeeDTO> getAllEmployees(){
 
         List<Employee> allEmployees = employeeDAO.findAll();
 
-        List<EmployeeDTO> employeeDTOs = new ArrayList<>();
+        List<OutgoingEmployeeDTO> employeeDTOs = new ArrayList<>();
 
         for(Employee e: allEmployees){
-            employeeDTOs.add(new EmployeeDTO(e));
+            employeeDTOs.add(new OutgoingEmployeeDTO(e));
         }
 
         return employeeDTOs;

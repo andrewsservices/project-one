@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.models.Employee;
-import com.revature.models.DTOs.EmployeeDTO;
+import com.revature.models.DTOs.OutgoingEmployeeDTO;
 import com.revature.services.EmployeeService;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,7 +27,7 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public ResponseEntity<List<EmployeeDTO>> getAllEmployees(){
+    public ResponseEntity<List<OutgoingEmployeeDTO>> getAllEmployees(){
         return ResponseEntity.ok(employeeService.getAllEmployees());
     }
 
