@@ -27,24 +27,30 @@ export const EmployeeTable:React.FC =() => {
     const getAllEmployees = async() => {
         try{
             const response = await axios.get("http://localhost:8080/employees",{withCredentials:true})
-
             setEmployees(response.data);
-
         } catch {
             alert("something went awry")
+        }
+    }
+
+    const promoteEmployee = async (id:number) => {
+        try{
+            const response = await axios.patch("http://localhost:8080/employees/promote/" + id,{},{withCredentials:true})
+            alert("Employee number: " + id + " was promoted");
+            getAllEmployees();
+        } catch {
+            alert("promotion unsuccessful")
         }
     }
 
     const fireEmployee = async (id:number) => {
         try{
             const response = await axios.delete("http://localhost:8080/employees/" + id,{withCredentials:true})
-
             alert("Employee number: " + id + " was fired");
-
+            getAllEmployees();
         } catch {
             alert("fire unsuccessful")
         }
-
     }
 
 
@@ -77,7 +83,9 @@ export const EmployeeTable:React.FC =() => {
                         <TableCell align="right">{e.lastname}</TableCell>
                         <TableCell align="right">{e.title}</TableCell>
                         <TableCell align="right">
-                                <Button variant="contained">Promote</Button>
+                                <Button variant="contained"
+                                    onClick={() => promoteEmployee(e.employeeid)}
+                                >Promote</Button>
                                 <Button variant="outlined"
                                     onClick={()=>fireEmployee(e.employeeid)}
                                 >Fire</Button>
