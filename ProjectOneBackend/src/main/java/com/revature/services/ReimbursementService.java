@@ -58,6 +58,7 @@ public class ReimbursementService {
         List<Reimbursement> reimbursements = reimbursementDAO.findAll();
 
         for(Reimbursement r: reimbursements){
+            System.out.println(r.getEmployee().getEmployeeid());
             OutgoingReimbursementDTO newOutgoingReimbursementDTO = new OutgoingReimbursementDTO(
                 r.getReimbursementid(),
                 r.getDescription(),
@@ -94,5 +95,6 @@ public class ReimbursementService {
 
         return reimbursementsDTO;
     }
+
 
 }

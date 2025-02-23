@@ -10,9 +10,12 @@ import com.revature.aspects.AdminOnly;
 import com.revature.models.Employee;
 import com.revature.models.DTOs.OutgoingEmployeeDTO;
 import com.revature.services.EmployeeService;
+import com.revature.services.ReimbursementService;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 
@@ -22,10 +25,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @CrossOrigin(value="http://localhost:5173",allowCredentials = "true")
 public class EmployeeController {
     private final EmployeeService employeeService;
+    private final ReimbursementService reimbursementService;
 
     @Autowired
-    public EmployeeController(EmployeeService employeeService){
+    public EmployeeController(EmployeeService employeeService, ReimbursementService reimbursementService) {
         this.employeeService = employeeService;
+        this.reimbursementService = reimbursementService;
     }
 
     @GetMapping
@@ -34,4 +39,9 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeService.getAllEmployees());
     }
 
+    @DeleteMapping("/{id}")
+    @AdminOnly
+    public void removeEmployee(@PathVariable int id) {
+        employeeService.removeEmployee(id);
+    }
 }

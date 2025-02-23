@@ -11,4 +11,6 @@ import com.revature.models.Employee;
 public interface EmployeeDAO extends JpaRepository<Employee,Integer>{
 
     public Optional<Employee> findByUsernameAndPassword(String username,String password);
+
+    
 }
