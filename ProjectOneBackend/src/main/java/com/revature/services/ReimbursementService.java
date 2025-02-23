@@ -12,6 +12,8 @@ import com.revature.models.Reimbursement;
 import com.revature.models.DTOs.IncomingReimbursementDTO;
 import com.revature.models.DTOs.OutgoingReimbursementDTO;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class ReimbursementService {
 
@@ -94,6 +96,21 @@ public class ReimbursementService {
 
 
         return reimbursementsDTO;
+    }
+
+
+
+
+    @Transactional
+    public Reimbursement changeReimbursementStatus(int reimbursementId) {
+        Optional<Reimbursement> optionalReimbursement = reimbursementDAO.findById(reimbursementId);
+        if (optionalReimbursement.isPresent()) {
+            Reimbursement reimbursement = optionalReimbursement.get();
+            reimbursement.setStatus("approved");
+            return reimbursementDAO.save(reimbursement);
+        } else {
+            throw new IllegalArgumentException("Reimbursement not found with ID: " + reimbursementId);
+        }
     }
 
 
