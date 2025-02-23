@@ -28,25 +28,21 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<OutgoingEmployeeDTO> registerEmployee(@RequestBody Employee employee){
-
+    public ResponseEntity<OutgoingEmployeeDTO> registerEmployee(@RequestBody Employee employee,HttpSession session){
         OutgoingEmployeeDTO returnedEmployee = authService.registerEmployee(employee);
-
+        session.setAttribute("employeeid", returnedEmployee.getemployeeid());
+        session.setAttribute("username", returnedEmployee.getUsername());
+        session.setAttribute("title", returnedEmployee.getTitle());
         return ResponseEntity.ok(returnedEmployee);
     }
 
     @PostMapping("/login")
     public ResponseEntity<OutgoingEmployeeDTO> login(@RequestBody LoginDTO loginDTO,HttpSession session){
-
-
         OutgoingEmployeeDTO loggedInEmployee = authService.login(loginDTO);
-
         session.setAttribute("employeeid", loggedInEmployee.getemployeeid());
         session.setAttribute("username", loggedInEmployee.getUsername());
         session.setAttribute("title", loggedInEmployee.getTitle());
-
         System.out.println("Employee " + session.getAttribute("username") + " has logged in");
-
         return ResponseEntity.ok(loggedInEmployee);
     }
 

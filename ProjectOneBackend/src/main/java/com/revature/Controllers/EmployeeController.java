@@ -15,6 +15,7 @@ import com.revature.services.ReimbursementService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
@@ -37,6 +38,13 @@ public class EmployeeController {
     @AdminOnly
     public ResponseEntity<List<OutgoingEmployeeDTO>> getAllEmployees(){
         return ResponseEntity.ok(employeeService.getAllEmployees());
+    }
+
+    @PatchMapping("/promote/{id}")
+    @AdminOnly
+    public ResponseEntity<Employee> promoteEmployee(@PathVariable int id){
+        Employee promotedEmployee = employeeService.promoteEmployee(id);
+        return ResponseEntity.ok(promotedEmployee);
     }
 
     @DeleteMapping("/{id}")

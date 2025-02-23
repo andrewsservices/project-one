@@ -1,6 +1,7 @@
 package com.revature.services;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,16 +27,24 @@ public class EmployeeService {
 
 
     public List<OutgoingEmployeeDTO> getAllEmployees(){
-
         List<Employee> allEmployees = employeeDAO.findAll();
-
         List<OutgoingEmployeeDTO> employeeDTOs = new ArrayList<>();
-
         for(Employee e: allEmployees){
             employeeDTOs.add(new OutgoingEmployeeDTO(e));
         }
-
         return employeeDTOs;
+    }
+
+    @Transactional
+    public Employee promoteEmployee(int employeeid){
+        Optional<Employee> optionalEmployee = employeeDAO.findById(employeeid);
+        if(optionalEmployee.isPresent()){
+            Employee employee = optionalEmployee.get();
+            employee.setTitle("manager");
+            return employeeDAO.save(employee);
+        } else {
+            throw new IllegalArgumentException("Employee not found with ID: " + employeeid);
+        }
     }
 
     @Transactional

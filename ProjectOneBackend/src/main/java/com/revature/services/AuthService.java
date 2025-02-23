@@ -22,9 +22,7 @@ public class AuthService {
     }
 
     public OutgoingEmployeeDTO registerEmployee(Employee employee){
-
         Employee returnedEmployee = employeeDAO.save(employee);
-
         OutgoingEmployeeDTO registeredEmployee = new OutgoingEmployeeDTO(
             returnedEmployee.getEmployeeid(),
             returnedEmployee.getFirstname(),
@@ -38,24 +36,19 @@ public class AuthService {
     }
 
     public OutgoingEmployeeDTO login(LoginDTO loginDTO){
-
        if(loginDTO.getUsername() == null || loginDTO.getUsername().isBlank()){
         throw new IllegalArgumentException("Username cannot be null or blank");
        }
-
          if(loginDTO.getPassword() == null || loginDTO.getPassword().isBlank()){
           throw new IllegalArgumentException("Password cannot be null or blank");
          }
-
          Employee returnedEmployee = employeeDAO.findByUsernameAndPassword(
             loginDTO.getUsername(),
             loginDTO.getPassword())
             .orElse(null);
-
             if(returnedEmployee == null){
                 throw new IllegalArgumentException("Invalid Username or Password");
             }
-
             return new OutgoingEmployeeDTO(returnedEmployee);
     }
 }

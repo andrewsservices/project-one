@@ -102,7 +102,7 @@ public class ReimbursementService {
 
 
     @Transactional
-    public Reimbursement changeReimbursementStatus(int reimbursementId) {
+    public Reimbursement changeReimbursementStatustoApproved(int reimbursementId) {
         Optional<Reimbursement> optionalReimbursement = reimbursementDAO.findById(reimbursementId);
         if (optionalReimbursement.isPresent()) {
             Reimbursement reimbursement = optionalReimbursement.get();
@@ -113,5 +113,16 @@ public class ReimbursementService {
         }
     }
 
+    @Transactional
+    public Reimbursement changeReimbursementStatustoDenied(int reimbursementId) {
+        Optional<Reimbursement> optionalReimbursement = reimbursementDAO.findById(reimbursementId);
+        if (optionalReimbursement.isPresent()) {
+            Reimbursement reimbursement = optionalReimbursement.get();
+            reimbursement.setStatus("denied");
+            return reimbursementDAO.save(reimbursement);
+        } else {
+            throw new IllegalArgumentException("Reimbursement not found with ID: " + reimbursementId);
+        }
+    }
 
 }
