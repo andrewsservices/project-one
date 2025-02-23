@@ -1,34 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import Box from '@mui/material/Box'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
+import { Login } from './Components/Login'
+import { Register } from './Components/Register'
+import { useState } from 'react'
+import { ReimbursementForEmployeeTable } from './Components/Tables/ReimbursementForEmployeeTable'
+import { ReimbursementTable } from './Components/Tables/ReimbursementTable'
+import { EmployeeTable } from './Components/Tables/EmployeeTable'
+import { ReimbursementForm } from './Components/ReimbursementForm'
+
 
 function App() {
-  const [count, setCount] = useState(0)
+
+const [currentEmployeeid,setCurrentEmployeeid] = useState(0);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+
+
+    <Box sx={{ width: '100%', maxWidth: 800 }} >
+          <BrowserRouter>
+            <Routes>
+            < Route path="" element={
+              <Login
+                setCurrentEmployeeid={setCurrentEmployeeid}
+              />
+              }/>
+              <Route path="register" element={
+                <Register
+                setCurrentEmployeeid={setCurrentEmployeeid}
+                />}/>
+              <Route path="employeetable" element={<EmployeeTable/>}/>
+              <Route path="basic" element={
+                <ReimbursementForEmployeeTable
+                  currentEmployeeid={currentEmployeeid}
+                />}/>
+              <Route path="manager" element={<ReimbursementTable/>}/>
+              <Route path="submitreimbursement" element={<ReimbursementForm currentEmployeeid={currentEmployeeid}/>}/>
+            </Routes>
+
+          </BrowserRouter>
+        </Box>
+
+
+
+
   )
 }
 
