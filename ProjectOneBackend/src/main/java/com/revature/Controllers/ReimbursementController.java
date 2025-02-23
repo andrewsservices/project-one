@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/reimb")
-@CrossOrigin
+@CrossOrigin(value="http://localhost:5173",allowCredentials = "true")
 public class ReimbursementController {
     private final ReimbursementService reimbursementService;
 
@@ -48,7 +48,7 @@ public class ReimbursementController {
     }
 
     @GetMapping("/employee/{id}")
-    @AdminOnly
+    @CrossOrigin(value="http://localhost:5173",allowCredentials = "true")
     public ResponseEntity <List<OutgoingReimbursementDTO>> getReimbursementsByEmployee(@PathVariable int id){
         List<OutgoingReimbursementDTO> reimbursementsByEmployee = reimbursementService.getReimbursementsByEmployee(id);
 

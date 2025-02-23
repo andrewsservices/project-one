@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RestController
 @RequestMapping("/employees")
 
-@CrossOrigin
+@CrossOrigin(value="http://localhost:5173",allowCredentials = "true")
 public class EmployeeController {
     private final EmployeeService employeeService;
 
