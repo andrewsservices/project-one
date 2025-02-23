@@ -41,15 +41,13 @@ export const Login:React.FC<LoginProps> = ({setCurrentEmployeeid}) => {
             setCurrentEmployeeid(currentEmployee.employeeid);
             alert(store.loggedInEmployee.username + " has logged in , welcome.  You are a " + store.loggedInEmployee.title + " employee");
             if(store.loggedInEmployee.title === "manager"){
-                navigate("/manager")
+                navigate("/reimb")
             } else {
                 navigate("/basic")
             }
         } catch{
             alert("login unsuccessful")
         }
-
-        console.log(loginCreds)
     }
 
 

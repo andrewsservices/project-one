@@ -7,29 +7,25 @@ import { useNavigate } from "react-router-dom"
 
 export const ReimbursementTable:React.FC = () => {
     const [reimbursements,setReimbursements] = useState<Reimbursement[]>([])
-
     const navigate = useNavigate()
 
-    const approveReimbursement = (id:number) => {
-        alert("Reimbursement number: " + id + " was approved");
-    }
 
-    const denyReimbursement = async (id:number) => {
-
-
-        try{
-            const response = await axios.post("http://localhost:8080/reimb/deny")
-            alert("Reimbursement number: " + id + " was denied");
-        } catch {
-            alert("denial unsuccessful")
-        }
-
-
-    }
 
     useEffect(()=>{
         getAllReimbursements()
     },[])
+
+
+    const approveReimbursement = async (id:number) => {
+        try{
+            const response = await axios.patch("http://localhost:8080/reimb/" + id,{},{withCredentials:true});
+            console.log(response.data);
+            alert("Reimbursement number: " + id + " was approved");
+        } catch {
+            alert("approval unsuccessful")
+        }
+    }
+
 
     const getAllReimbursements = async() => {
 
@@ -81,8 +77,9 @@ export const ReimbursementTable:React.FC = () => {
                             <TableCell align="right">{r.status}</TableCell>
                             <TableCell align="right">{r.employeeid}</TableCell>
                             <TableCell align="right">
-                                <Button variant="contained" onClick={approveReimbursement}>Approved</Button>
-                                <Button variant="outlined">Declined</Button>
+                                <Button
+                                    onClick={()=>approveReimbursement(r.reimbursementid)}
+                                variant="contained">Approve</Button>
                             </TableCell>
                             </TableRow>
                         ))}

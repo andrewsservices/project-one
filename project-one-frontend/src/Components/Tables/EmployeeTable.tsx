@@ -11,11 +11,14 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 
 
 export const EmployeeTable:React.FC =() => {
     const [employees, setEmployees] = useState<Employee[]>([])
+
+    const navigate = useNavigate();
 
     useEffect(()=>{
         getAllEmployees();
@@ -32,6 +35,17 @@ export const EmployeeTable:React.FC =() => {
         }
     }
 
+    const fireEmployee = async (id:number) => {
+        try{
+            const response = await axios.delete("http://localhost:8080/employees/" + id,{withCredentials:true})
+
+            alert("Employee number: " + id + " was fired");
+
+        } catch {
+            alert("fire unsuccessful")
+        }
+
+    }
 
 
     return(
@@ -64,13 +78,17 @@ export const EmployeeTable:React.FC =() => {
                         <TableCell align="right">{e.title}</TableCell>
                         <TableCell align="right">
                                 <Button variant="contained">Promote</Button>
-                                <Button variant="outlined">Fire</Button>
+                                <Button variant="outlined"
+                                    onClick={()=>fireEmployee(e.employeeid)}
+                                >Fire</Button>
                             </TableCell>
                         </TableRow>
                     ))}
                     </TableBody>
                 </Table>
         </TableContainer>
+
+            <Button  onClick={()=>navigate("/reimb")} variant="contained">Back To Reimbursements</Button>
         </>
     )
 }
