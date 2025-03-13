@@ -62,12 +62,12 @@ export const ReimbursementTable:React.FC = () => {
         console.log(value);
     };
 
-    const updateRequest = (reimbursement:Reimbursement) => {
-        alert("Reimbursement " + reimbursement.reimbursementid + " has been fake updated or deleted")
+    // const updateRequest = (reimbursement:Reimbursement) => {
+    //     alert("Reimbursement " + reimbursement.reimbursementid + " has been fake updated or deleted")
 
-        //TODO: Could definitely make another call to getAllUsers for automatic updates
-        //TODO2: Cache the list of users and update THAT so we don't make a repeat DB call
-    }
+    //     //TODO: Could definitely make another call to getAllUsers for automatic updates
+    //     //TODO2: Cache the list of users and update THAT so we don't make a repeat DB call
+    // }
 
     return(
         <>
