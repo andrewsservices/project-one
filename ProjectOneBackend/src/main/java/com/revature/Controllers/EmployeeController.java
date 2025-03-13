@@ -23,7 +23,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RestController
 @RequestMapping("/employees")
 
-@CrossOrigin(value="http://localhost:5173",allowCredentials = "true")
+@CrossOrigin(value={"http://localhost:5173",
+"http://myersbucket.s3-website.us-east-2.amazonaws.com/"},
+allowCredentials = "true")
 public class EmployeeController {
     private final EmployeeService employeeService;
     private final ReimbursementService reimbursementService;

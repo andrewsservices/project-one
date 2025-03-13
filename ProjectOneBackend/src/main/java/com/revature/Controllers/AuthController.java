@@ -17,7 +17,9 @@ import com.revature.models.DTOs.LoginDTO;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(value="http://localhost:5173",allowCredentials = "true")
+@CrossOrigin(value={"http://localhost:5173",
+"http://myersbucket.s3-website.us-east-2.amazonaws.com/"},
+allowCredentials = "true")
 public class AuthController {
 
     private final AuthService authService;
