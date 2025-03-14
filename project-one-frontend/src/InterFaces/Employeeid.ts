@@ -1,3 +1,3 @@
 export interface Employeeid{
-    currentEmployeeid: number;
+    currentEmployeeid: string;
 }

@@ -18,13 +18,18 @@ export const ReimbursementForEmployeeTable:React.FC<Employeeid> = ({currentEmplo
     const [reimbursements,setReimbursements] = useState<Reimbursement[]>([])
     const [view,setView] = useState<string>("all");
 
-    useEffect(()=>{
-        getAllReimbursementsForEmployee()
-    },[])
+    useEffect(() => {
+        if (currentEmployeeid) {
+            getAllReimbursementsForEmployee();
+        } else {
+            console.error("currentEmployeeid is not defined");
+        }
+    }, [currentEmployeeid]);
+
 
     const getAllReimbursementsForEmployee = async() => {
         try{
-            const response = await axios.get("http://3.133.140.142:8080/reimb/employee/" + currentEmployeeid,{withCredentials:true})
+            const response = await axios.get(`http://localhost:8080/reimb/employee/${currentEmployeeid}`, { withCredentials: true });
             if(response.status === 200){
                 setReimbursements(response.data)
             } else {

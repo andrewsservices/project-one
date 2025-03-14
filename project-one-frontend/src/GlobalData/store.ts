@@ -3,11 +3,11 @@
 export const store = {
 
     loggedInEmployee: {
-        employeeid:0,
+        employeeid:"",
         username:"",
         title:""
     }
 
-    
+
 
 }

@@ -1,10 +1,10 @@
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 import axios from "axios";
-import { LoginProps } from "../InterFaces/LoginProps";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { LoginProps } from "../InterFaces/LoginProps";
 import { store } from "../GlobalData/store";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 
 
 export const Login:React.FC<LoginProps> = ({setCurrentEmployeeid}) => {
@@ -35,12 +35,22 @@ export const Login:React.FC<LoginProps> = ({setCurrentEmployeeid}) => {
 
     const login = async () => {
         try{
-            const response = await axios.post("http://3.133.140.142:8080/auth/login",loginCreds,{withCredentials:true})
+            // const response = await axios.post("http://localhost:8080/auth/login",loginCreds,{withCredentials:true})
+
+
+            const response = await axios.post("http://localhost:8080/auth/login",loginCreds,{withCredentials:true})
             store.loggedInEmployee = response.data;
             const currentEmployee = store.loggedInEmployee;
             setCurrentEmployeeid(currentEmployee.employeeid);
             alert(store.loggedInEmployee.username + " has logged in , welcome.  You are a " + store.loggedInEmployee.title + " employee");
-            if(store.loggedInEmployee.title === "manager"){
+
+            // setLoggedInEmployee(response.data)
+            // setCurrentEmployeeid(response.data.employeeid)
+
+            // alert("Welcome " + loggedInEmployee?.username)
+
+
+            if(store.loggedInEmployee?.title == "manager"){
                 navigate("/reimb")
             } else {
                 navigate("/basic")

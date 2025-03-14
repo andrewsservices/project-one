@@ -13,11 +13,8 @@ import { NavBar } from './Components/NavBar'
 
 function App() {
 
-const [currentEmployeeid,setCurrentEmployeeid] = useState(0);
+const [currentEmployeeid,setCurrentEmployeeid] = useState("");
 
-useEffect(()=>{
-        console.log("employee id: " + currentEmployeeid)
-    })
 
   return (
   <>

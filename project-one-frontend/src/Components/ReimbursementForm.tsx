@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
 
-import { Employeeid } from "../InterFaces/Employeeid";
 import { Button, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { Employeeid } from "../InterFaces/Employeeid";
 
 export const ReimbursementForm:React.FC<Employeeid> = ({currentEmployeeid}) => {
 
@@ -24,7 +24,7 @@ export const ReimbursementForm:React.FC<Employeeid> = ({currentEmployeeid}) => {
     }
     const submitReimbursement = async () => {
         try{
-            const response = await axios.post("http://3.133.140.142:8080/reimb",reimbursement,{withCredentials:true})
+            const response = await axios.post("http://localhost:8080/reimb",reimbursement,{withCredentials:true})
             alert("reimbursement submitted")
             navigate("/basic")
             console.log(response)

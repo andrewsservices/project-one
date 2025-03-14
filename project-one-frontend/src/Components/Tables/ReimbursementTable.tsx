@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react"
-import { Reimbursement } from "../../InterFaces/Reimbursement"
-import axios from "axios"
 import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
+import axios from "axios"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { Reimbursement } from "../../InterFaces/Reimbursement"
 
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
+import FormControl from '@mui/material/FormControl'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import FormLabel from '@mui/material/FormLabel'
+import Radio from '@mui/material/Radio'
+import RadioGroup from '@mui/material/RadioGroup'
+import { ReimbursementProps } from "../../InterFaces/ReimbursementProps"
 
 
 export const ReimbursementTable:React.FC = () => {
@@ -23,9 +24,9 @@ export const ReimbursementTable:React.FC = () => {
     },[])
 
 
-    const approveReimbursement = async (id:number) => {
+    const approveReimbursement = async (id:string) => {
         try{
-            const response = await axios.patch("http://3.133.140.142:8080/reimb/approve/" + id,{},{withCredentials:true});
+            const response = await axios.patch("http://localhost:8080/reimb/approve/" + id,{},{withCredentials:true});
             console.log(response.data);
             alert("Reimbursement number: " + id + " was approved");
             getAllReimbursements();
@@ -34,9 +35,9 @@ export const ReimbursementTable:React.FC = () => {
         }
     }
 
-    const denyReimbursement = async (id:number) => {
+    const denyReimbursement = async (id:string) => {
         try{
-            const response = await axios.patch("http://3.133.140.142:8080/reimb/deny/" + id,{},{withCredentials:true});
+            const response = await axios.patch("http://localhost:8080/reimb/deny/" + id,{},{withCredentials:true});
             console.log(response.data);
             alert("Reimbursement number: " + id + " was denied");
             getAllReimbursements();
@@ -48,7 +49,7 @@ export const ReimbursementTable:React.FC = () => {
 
     const getAllReimbursements = async() => {
         try{
-            const response = await axios.get("http://3.133.140.142:8080/reimb",{withCredentials:true})
+            const response = await axios.get("http://localhost:8080/reimb",{withCredentials:true})
             setReimbursements(response.data)
 
         } catch {
