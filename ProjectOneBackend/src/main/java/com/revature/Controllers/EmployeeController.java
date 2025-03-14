@@ -1,5 +1,6 @@
 package com.revature.Controllers;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -44,14 +45,14 @@ public class EmployeeController {
 
     @PatchMapping("/promote/{id}")
     @AdminOnly
-    public ResponseEntity<Employee> promoteEmployee(@PathVariable int id){
+    public ResponseEntity<Employee> promoteEmployee(@PathVariable UUID id){
         Employee promotedEmployee = employeeService.promoteEmployee(id);
         return ResponseEntity.ok(promotedEmployee);
     }
 
     @DeleteMapping("/{id}")
     @AdminOnly
-    public void removeEmployee(@PathVariable int id) {
+    public void removeEmployee(@PathVariable UUID id) {
         employeeService.removeEmployee(id);
     }
 }

@@ -1,9 +1,11 @@
 package com.revature.models.DTOs;
 
+import java.util.UUID;
+
 import com.revature.models.Employee;
 
 public class OutgoingEmployeeDTO {
-   private int employeeid;
+   private UUID employeeid;
    private String firstname;
    private String lastname;
     private String username;
@@ -16,7 +18,7 @@ public class OutgoingEmployeeDTO {
 
 
 
-    public OutgoingEmployeeDTO(int employeeid, String firstname, String lastname, String username, String title) {
+    public OutgoingEmployeeDTO(UUID employeeid, String firstname, String lastname, String username, String title) {
         this.employeeid = employeeid;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -34,13 +36,13 @@ public class OutgoingEmployeeDTO {
 
 
 
-    public int getemployeeid() {
+    public UUID getemployeeid() {
         return employeeid;
     }
 
 
 
-    public void setemployeeid(int employeeid) {
+    public void setemployeeid(UUID employeeid) {
         this.employeeid = employeeid;
     }
 

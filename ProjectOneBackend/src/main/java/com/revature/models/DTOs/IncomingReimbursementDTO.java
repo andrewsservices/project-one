@@ -1,16 +1,18 @@
 package com.revature.models.DTOs;
 
+import java.util.UUID;
+
 public class IncomingReimbursementDTO {
-    private int reimbursementid;
+    private UUID reimbursementid;
     private String description;
     private double amount;
     private String status;
-    private int employeeid;
+    private UUID employeeid;
 
     public IncomingReimbursementDTO() {
     }
 
-    public IncomingReimbursementDTO(int reimbursementid, String description, double amount, String status, int employeeid) {
+    public IncomingReimbursementDTO(UUID reimbursementid, String description, double amount, String status, UUID employeeid) {
         this.reimbursementid = reimbursementid;
         this.description = description;
         this.amount = amount;
@@ -18,11 +20,11 @@ public class IncomingReimbursementDTO {
         this.employeeid = employeeid;
     }
 
-    public int getReimbursementid() {
+    public UUID getReimbursementid() {
         return reimbursementid;
     }
 
-    public void setReimbursementid(int reimbursementid) {
+    public void setReimbursementid(UUID reimbursementid) {
         this.reimbursementid = reimbursementid;
     }
 
@@ -50,11 +52,11 @@ public class IncomingReimbursementDTO {
         this.status = status;
     }
 
-    public int getEmployeeid() {
+    public UUID getEmployeeid() {
         return employeeid;
     }
 
-    public void setEmployeeid(int employeeid) {
+    public void setEmployeeid(UUID employeeid) {
         this.employeeid = employeeid;
     }
 

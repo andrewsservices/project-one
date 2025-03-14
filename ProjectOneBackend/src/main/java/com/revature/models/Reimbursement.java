@@ -1,5 +1,7 @@
 package com.revature.models;
 
+import java.util.UUID;
+
 import org.springframework.stereotype.Component;
 
 import jakarta.persistence.*;
@@ -10,8 +12,8 @@ import jakarta.persistence.*;
 public class Reimbursement {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int reimbursementid;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID reimbursementid;
 
     private String description;
 
@@ -26,7 +28,7 @@ public class Reimbursement {
     public Reimbursement() {
     }
 
-    public Reimbursement(int reimbursementid, String description, double amount, String status, Employee employee) {
+    public Reimbursement(UUID reimbursementid, String description, double amount, String status, Employee employee) {
         this.reimbursementid = reimbursementid;
         this.description = description;
         this.amount = amount;
@@ -34,11 +36,11 @@ public class Reimbursement {
         this.employee = employee;
     }
 
-    public int getReimbursementid() {
+    public UUID getReimbursementid() {
         return reimbursementid;
     }
 
-    public void setReimbursementid(int reimbursementid) {
+    public void setReimbursementid(UUID reimbursementid) {
         this.reimbursementid = reimbursementid;
     }
 

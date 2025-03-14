@@ -1,5 +1,6 @@
 package com.revature.Controllers;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -52,7 +53,7 @@ public class ReimbursementController {
 
     @GetMapping("/employee/{id}")
     @CrossOrigin(value="http://localhost:5173",allowCredentials = "true")
-    public ResponseEntity <List<OutgoingReimbursementDTO>> getReimbursementsByEmployee(@PathVariable int id){
+    public ResponseEntity <List<OutgoingReimbursementDTO>> getReimbursementsByEmployee(@PathVariable UUID id){
         List<OutgoingReimbursementDTO> reimbursementsByEmployee = reimbursementService.getReimbursementsByEmployee(id);
 
         return ResponseEntity.ok(reimbursementsByEmployee);
@@ -61,7 +62,7 @@ public class ReimbursementController {
     @PatchMapping("/approve/{id}")
     @AdminOnly
     @CrossOrigin(value="http://localhost:5173",allowCredentials = "true")
-    public ResponseEntity<Reimbursement> updateReimbursementStatustoApproved(@PathVariable int id){
+    public ResponseEntity<Reimbursement> updateReimbursementStatustoApproved(@PathVariable UUID id){
         Reimbursement updatedReimbursement = reimbursementService.changeReimbursementStatustoApproved(id);
         return ResponseEntity.ok(updatedReimbursement);
     }
@@ -69,7 +70,7 @@ public class ReimbursementController {
     @PatchMapping("/deny/{id}")
     @AdminOnly
     @CrossOrigin(value="http://localhost:5173",allowCredentials = "true")
-    public ResponseEntity<Reimbursement> updateReimbursementStatustoDenied(@PathVariable int id){
+    public ResponseEntity<Reimbursement> updateReimbursementStatustoDenied(@PathVariable UUID id){
         Reimbursement updatedReimbursement = reimbursementService.changeReimbursementStatustoDenied(id);
         return ResponseEntity.ok(updatedReimbursement);
     }

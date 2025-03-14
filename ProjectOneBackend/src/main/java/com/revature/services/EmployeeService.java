@@ -2,6 +2,7 @@ package com.revature.services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,7 +37,7 @@ public class EmployeeService {
     }
 
     @Transactional
-    public Employee promoteEmployee(int employeeid){
+    public Employee promoteEmployee(UUID employeeid){
         Optional<Employee> optionalEmployee = employeeDAO.findById(employeeid);
         if(optionalEmployee.isPresent()){
             Employee employee = optionalEmployee.get();
@@ -48,7 +49,7 @@ public class EmployeeService {
     }
 
     @Transactional
-    public void removeEmployee(int employeeid){
+    public void removeEmployee(UUID employeeid){
          // Delete all reimbursements associated with the employee
          reimbursementDAO.deleteByEmployee_Employeeid(employeeid);
          // Delete the employee

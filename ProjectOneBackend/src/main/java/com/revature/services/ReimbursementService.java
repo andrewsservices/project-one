@@ -1,6 +1,7 @@
 package com.revature.services;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,7 @@ public class ReimbursementService {
     public Reimbursement postReimbursement(IncomingReimbursementDTO incomingReimbursementDTO){
 
         Reimbursement newReimbursement = new Reimbursement(
-            0,
+            null,
             incomingReimbursementDTO.getDescription(),
             incomingReimbursementDTO.getAmount(),
             incomingReimbursementDTO.getStatus(),
@@ -77,7 +78,7 @@ public class ReimbursementService {
     }
 
 
-    public List<OutgoingReimbursementDTO> getReimbursementsByEmployee(int employeeid){
+    public List<OutgoingReimbursementDTO> getReimbursementsByEmployee(UUID employeeid){
         List<Reimbursement> reimbursementsById = reimbursementDAO.findByEmployee_Employeeid(employeeid);
 
         List<OutgoingReimbursementDTO> reimbursementsDTO = new java.util.ArrayList<>();
@@ -102,7 +103,7 @@ public class ReimbursementService {
 
 
     @Transactional
-    public Reimbursement changeReimbursementStatustoApproved(int reimbursementId) {
+    public Reimbursement changeReimbursementStatustoApproved(UUID reimbursementId) {
         Optional<Reimbursement> optionalReimbursement = reimbursementDAO.findById(reimbursementId);
         if (optionalReimbursement.isPresent()) {
             Reimbursement reimbursement = optionalReimbursement.get();
@@ -114,7 +115,7 @@ public class ReimbursementService {
     }
 
     @Transactional
-    public Reimbursement changeReimbursementStatustoDenied(int reimbursementId) {
+    public Reimbursement changeReimbursementStatustoDenied(UUID reimbursementId) {
         Optional<Reimbursement> optionalReimbursement = reimbursementDAO.findById(reimbursementId);
         if (optionalReimbursement.isPresent()) {
             Reimbursement reimbursement = optionalReimbursement.get();

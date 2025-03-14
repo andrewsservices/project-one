@@ -1,5 +1,7 @@
 package com.revature.models;
 
+import java.util.UUID;
+
 import org.springframework.stereotype.Component;
 
 import jakarta.persistence.Column;
@@ -15,8 +17,8 @@ import jakarta.persistence.Table;
 public class Employee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int employeeid;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID employeeid;
 
     private String firstname;
 
@@ -35,7 +37,7 @@ public class Employee {
     }
 
 
-    public Employee(int employeeid, String firstname, String lastname, String username, String password, String title) {
+    public Employee(UUID employeeid, String firstname, String lastname, String username, String password, String title) {
         this.employeeid = employeeid;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -46,10 +48,10 @@ public class Employee {
 
 
 
-    public int getEmployeeid() {
+    public UUID getEmployeeid() {
         return employeeid;
     }
-    public void setEmployeeid(int employeeid) {
+    public void setEmployeeid(UUID employeeid) {
         this.employeeid = employeeid;
     }
 
