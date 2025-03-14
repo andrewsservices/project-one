@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react"
-import { Reimbursement } from "../../InterFaces/Reimbursement"
+import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
 import axios from "axios"
-import { Employeeid } from "../../InterFaces/Employeeid"
-import { Button, Paper,Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { Employeeid } from "../../InterFaces/Employeeid"
+import { Reimbursement } from "../../InterFaces/Reimbursement"
 
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
+import FormControl from '@mui/material/FormControl'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import FormLabel from '@mui/material/FormLabel'
+import Radio from '@mui/material/Radio'
+import RadioGroup from '@mui/material/RadioGroup'
 
 export const ReimbursementForEmployeeTable:React.FC<Employeeid> = ({currentEmployeeid}) => {
 
@@ -29,7 +29,7 @@ export const ReimbursementForEmployeeTable:React.FC<Employeeid> = ({currentEmplo
 
     const getAllReimbursementsForEmployee = async() => {
         try{
-            const response = await axios.get(`http://localhost:8080/reimb/employee/${currentEmployeeid}`, { withCredentials: true });
+            const response = await axios.get(`http://3.133.140.142:8080/reimb/employee/${currentEmployeeid}`, { withCredentials: true });
             if(response.status === 200){
                 setReimbursements(response.data)
             } else {
