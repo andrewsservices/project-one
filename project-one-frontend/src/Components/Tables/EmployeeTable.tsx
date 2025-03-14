@@ -26,7 +26,7 @@ export const EmployeeTable:React.FC =() => {
 
     const getAllEmployees = async() => {
         try{
-            const response = await axios.get("http://localhost:8080/employees",{withCredentials:true})
+            const response = await axios.get("http://3.133.140.142:8080/employees",{withCredentials:true})
             setEmployees(response.data);
             console.log(response)
         } catch {
@@ -36,7 +36,7 @@ export const EmployeeTable:React.FC =() => {
 
     const promoteEmployee = async (id:number) => {
         try{
-            const response = await axios.patch("http://localhost:8080/employees/promote/" + id,{},{withCredentials:true})
+            const response = await axios.patch("http://3.133.140.142:8080/employees/promote/" + id,{},{withCredentials:true})
             alert("Employee number: " + id + " was promoted");
             getAllEmployees();
             console.log(response)
@@ -47,7 +47,7 @@ export const EmployeeTable:React.FC =() => {
 
     const fireEmployee = async (id:number) => {
         try{
-            const response = await axios.delete("http://localhost:8080/employees/" + id,{withCredentials:true})
+            const response = await axios.delete("http://3.133.140.142:8080/employees/" + id,{withCredentials:true})
             alert("Employee number: " + id + " was fired");
             getAllEmployees();
             console.log(response)

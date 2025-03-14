@@ -24,7 +24,7 @@ export const ReimbursementForEmployeeTable:React.FC<Employeeid> = ({currentEmplo
 
     const getAllReimbursementsForEmployee = async() => {
         try{
-            const response = await axios.get("http://localhost:8080/reimb/employee/" + currentEmployeeid,{withCredentials:true})
+            const response = await axios.get("http://3.133.140.142:8080/reimb/employee/" + currentEmployeeid,{withCredentials:true})
             if(response.status === 200){
                 setReimbursements(response.data)
             } else {
